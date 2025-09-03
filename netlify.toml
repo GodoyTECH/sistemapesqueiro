@@ -1,0 +1,19 @@
+[build]
+  base = ""                             # raiz do repo (frontend está na raiz)
+  publish = "dist"
+  command = "npm ci && npm run build"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  external_node_modules = ["@neondatabase/serverless", "bcryptjs", "jsonwebtoken"]
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
