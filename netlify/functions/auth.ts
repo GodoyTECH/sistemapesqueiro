@@ -50,4 +50,4 @@ function resp(status: number, data: any) {
   return new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json' } });
 }
 
-eexport const handler = withCors(baseHandler);
+export const handler = withCors(baseHandler);
