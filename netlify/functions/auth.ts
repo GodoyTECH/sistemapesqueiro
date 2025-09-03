@@ -10,7 +10,7 @@ import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret';
 
-const handler: Handler = async (event) => {
+const baseHandler: Handler = async (event) => {
   try {
     const { httpMethod, path } = event;
     const body = event.body ? JSON.parse(event.body) : {};
@@ -50,4 +50,4 @@ function resp(status: number, data: any) {
   return new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json' } });
 }
 
-export const handler = withCors(handler);
+eexport const handler = withCors(baseHandler);
