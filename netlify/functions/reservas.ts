@@ -5,7 +5,7 @@ import type { Handler } from '@netlify/functions';
 import { withCors } from './_lib/cors';
 import { query } from './_lib/db';
 
-const handler: Handler = async (event) => {
+const baseHandler: Handler = async (event) => {
   const { httpMethod, path } = event;
   try {
     // GET /api/reservas
@@ -38,4 +38,4 @@ const handler: Handler = async (event) => {
 const ok = (data: any, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json' } });
 const err = (status: number, message: string) => ok({ error: message }, status);
 
-export const handler = withCors(handler);
+export const handler = withCors(baseHandler);
